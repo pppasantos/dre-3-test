@@ -39,6 +39,7 @@ A topologia do projeto é composta pelos seguintes serviços:
 - **Airflow Init**: Serviço para inicializar o banco de dados e configurar usuários iniciais.
 - **Airflow CLI**: Interface de linha de comando para interações manuais.
 - **Flower**: Dashboard de monitoramento para Celery Workers.
+- **init-database**: Um container que cria a database do airflow junto com o usuario dele no postgres.
 
 ### Requisitos
 
