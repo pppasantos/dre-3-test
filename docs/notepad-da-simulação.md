@@ -22,7 +22,7 @@ Listarei aqui os problemas detectados na ordem que eu os encontrei, durante a co
   ```
 - Foi necessário dar permissão nesses diretórios ao usuário do Airflow, visto que estavam subindo para os containers com permissões erradas:
   ```bash
-  sudo chown -R 5000:0 ./dags ./logs ./plugins
+  sudo chown -R 50000:0 ./dags ./logs ./plugins
   ```
 
 ### 2.1. Volumes do `airflow-init`

@@ -23,7 +23,7 @@ Durante a configuração do Apache Airflow, diversos problemas foram encontrados
 - **Erro:** Diretórios necessários para `logs` e `plugins` não estavam presentes.
 - **Solução:**
   mkdir -p ./logs ./plugins
-  sudo chown -R 5000:5000 ./dags ./logs ./plugins
+  sudo chown -R 50000:0 ./dags ./logs ./plugins
 
 - **Causa:** O container `airflow-init` não estava montando corretamente os volumes.
 - **Solução:** Nome do volume errado na âncora `&airflow-common` no `docker-compose.yml`.
