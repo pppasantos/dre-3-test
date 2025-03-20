@@ -2,15 +2,24 @@
 
 Listarei aqui os problemas detectados na ordem que eu os encontrei, durante a configuração do Apache Airflow junto com suas correções.
 
-## 1. Variável `AIRFLOW_IMAGE_NAME` Definida Incorretamente
 
-- A variável `AIRFLOW_IMAGE_NAME` não estava corretamente definida.
-- Deixei um valor fixo, não identifiquei a necessidade de chamar o valor por outra variavel externa.
-
-## 2. Usuário do Banco de Dados Não Era o Esperado Pelo Airflow
+## 1 Usuário do Banco de Dados Não Era o Esperado Pelo Airflow
 
 - sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "postgres" (172.21.0.2), port 5432 failed: FATAL:  password authentication failed for user "airflow"
 - No container do Postgres, usuario admin foi substituido pelo **airflow** que era esperando pela app.
+
+# 1.1. Variável AIRFLOW_UID não estava definida.
+- foi necessário defini-la globalmente.
+
+
+## 2 Diretórios de mapeamento não encontrados no host.
+
+- Apenas o diretório 'dags' existia, foi necessário criar 'plugins' e 'logs'
+- mkdir -p ./logs ./plugins
+- Foi necessário dar permissão nesses diretórios ao usuario do airflow, visto que elas estavam subindo para os containers com permissões erradas.
+- sudo chown -R 5000:5000 ./dags ./logs ./plugins
+
+# 2.1 Volumes do airflow-init
 
 ## 3. Container airflow webserver não estava passando no healthcheck interno do docker.
 - Up 57 seconds (unhealthy) dre-3-test_airflow-webserver_1

@@ -3,6 +3,7 @@ x-airflow-common:
   image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.5.1}
   environment:
     &airflow-common-env
+    AIRFLOW_UID: 5000
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
@@ -129,7 +130,7 @@ services:
       _AIRFLOW_WWW_USER_USERNAME: airflow
       _AIRFLOW_WWW_USER_PASSWORD: airflow
       _PIP_ADDITIONAL_REQUIREMENTS: ''
-    user: "0:0"
+    user: "5000:0"
     volumes:
       - .:/sources
 
