@@ -2,9 +2,9 @@
 
 # Objetivos
 - [x] Conseguir subir a stack do airflow e executar a dag smooth.py.
-- [] Criar o postmortem explicando quais foram os problemas suas causas, soluções. E quais serão as ações para mitigar as chances disso acontecer novamente.
-- [] Criar arquitetura do airflow atual.
-- [] Sugerir uma nova arquitetura para o airflow.
+- [ ] Criar o postmortem explicando quais foram os problemas suas causas, soluções. E quais serão as ações para mitigar as chances disso acontecer novamente.
+- [ ] Criar arquitetura do airflow atual.
+- [ ] Sugerir uma nova arquitetura para o airflow.
 
 # Topologia do repositório.
  ```
