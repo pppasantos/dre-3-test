@@ -9,15 +9,15 @@
 # Topologia do repositório.
  ```
 .
-├── compose.yaml ( Arquivo Principal para iniciar o projeto hospedado no docker)
-├── dags
-│   └── smooth.py (dag/tarefa que precisa rodar)
-├── docs (documentação do projeto como um todo)
+├── LICENSE 
+├── README.md (Esta página)
+├── compose.yaml (docker compose onde nosso projeto está hospedado)
+├── dags (As dags ficam aqui)
+│   └── smooth.py
+├── docs (Documentação no geral)
 │   ├── notepad-da-simulação.md
 │   └── postmortem.md
-├── LICENSE
-├── logs (Os logs do airflow ficam aqui)
-└── README.md (Esta página)
+└── makefile (Make onde faremos toda a execução do projeto utilizando ele)
  ```
 
  # Topologia básica do airflow
@@ -49,7 +49,7 @@ A topologia do projeto é composta pelos seguintes serviços:
 
 ### Onde este projeto foi executado?
 
-- Este projeto foi feito utilizando uma ec2 com debian 12 t3.2xlarge.
+- Este projeto foi feito utilizando uma ec2 com Debian 12 hospedada em uma t3.2xlarge.
 
 ### Como Iniciar o Projeto
 
