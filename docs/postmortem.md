@@ -34,6 +34,9 @@ Durante a configuração do Apache Airflow, diversos problemas foram encontrados
 - Validar o ponto de montagem correto das DAGs antes da execução.
 - Implementar uma pipeline de testes para verificar erros de sintaxe antes de subir novas DAGs.
 - Implementar monitoramento.
+- Criar Fernet_KEY.
+- Criar um usuario no postgres especifico para o airflow (hoje ele está usando o usuario admin da instancia.)
+- Resolver os warnings do airflow, (atualizar python e dependencias)
 
 ## Conclusão
 A configuração do Apache Airflow foi concluída com sucesso após a resolução dos problemas descritos.
