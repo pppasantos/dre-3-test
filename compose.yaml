@@ -1,17 +1,18 @@
 x-airflow-common:
   &airflow-common
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.5.1}
+  image: apache/airflow:2.5.1
   environment:
     &airflow-common-env
+    AIRFLOW_UID: 5000
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
-    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__FERNET_KEY: 'aGNWU1hqR0ljekI1eXNhY2ZWNE9ucXh0ZTViSmV3SzQ='
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
   volumes:
-    - ./dag:/opt/airflow/dags
+    - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
   user: "5000"
@@ -28,7 +29,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: admin
+      POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
@@ -55,8 +56,13 @@ services:
     command: webserver
     ports:
       - 8080:8080
+    deploy:
+      resources:
+        limits:
+          memory: 1024M  
+          cpus: '0.5' 
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:xxxx/health"]
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
       timeout: 10s
       retries: 5
@@ -119,8 +125,8 @@ services:
     command:
       - -c
       - |
-        mkdir -p /sources/logs /sources/dags /sources/plugins
-        chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
+        mkdir -p /opt/airflow/logs /opt/airflow/dags /opt/airflow/plugins
+        chown -R "${AIRFLOW_UID}:0" /opt/airflow/{logs,dags,plugins}
         exec /entrypoint airflow version
     environment:
       <<: *airflow-common-env
@@ -129,9 +135,11 @@ services:
       _AIRFLOW_WWW_USER_USERNAME: airflow
       _AIRFLOW_WWW_USER_PASSWORD: airflow
       _PIP_ADDITIONAL_REQUIREMENTS: ''
-    user: "0:0"
+    user: "5000:0"
     volumes:
-      - .:/sources
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
 
   airflow-cli:
     <<: *airflow-common
