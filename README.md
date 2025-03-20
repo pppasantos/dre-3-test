@@ -9,26 +9,15 @@
 # Topologia do repositório.
  ```
 .
-├── compose.yaml
+├── compose.yaml ( Arquivo Principal para iniciar o projeto hospedado no docker)
 ├── dags
-│   ├── __pycache__
-│   │   └── smooth.cpython-37.pyc
-│   └── smooth.py
-├── docs
+│   └── smooth.py (dag/tarefa que precisa rodar)
+├── docs (documentação do projeto como um todo)
 │   ├── notepad-da-simulação.md
 │   └── postmortem.md
 ├── LICENSE
-├── logs
-│   ├── dag_id=smooth
-│   │   └── run_id=manual__2025-03-20T16:39:49.819048+00:00
-│   │       └── task_id=youtube_video
-│   │           └── attempt=1.log
-│   ├── dag_processor_manager
-│   │   └── dag_processor_manager.log
-│   └── scheduler
-│       └── 2025-03-20
-│           └── smooth.py.log
-└── README.md
+├── logs (Os logs do airflow ficam aqui)
+└── README.md (Esta página)
  ```
 
  # Topologia básica do airflow
@@ -55,6 +44,7 @@ A topologia do projeto é composta pelos seguintes serviços:
 
 - Docker
 - Docker Compose
+- make
 
 
 ### Onde este projeto foi executado?
@@ -68,9 +58,24 @@ A topologia do projeto é composta pelos seguintes serviços:
    git clone https://github.com/pppasantos/dre-3-test.git
    cd dre-3-test
    ```
-2. Execute o compose.yaml:
+2. Dependencias:
    ```bash
-   docker compose up
+   apt update
+   curl -fssL https://get.docker.io | bash
+   apt install docker-compose -y
+   apt install make -y
+   ```
+3. Execute o Projeto:
+   ```bash
+   make up
+   ```
+4. Verifique se tudo está rodando:
+   ```bash
+    após o comando **make** ele irá mostrar os logs, porém é possivel ver o log de cada app individualmente;
+    make logs-postgres
+    make logs-scheduler
+    make logs-worker
+    make logs-webserver
    ```
 3. Login no Airflow:
    ```bash
