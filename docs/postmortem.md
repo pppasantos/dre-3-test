@@ -5,9 +5,9 @@ Durante a configuração do Apache Airflow, diversos problemas foram encontrados
 
 | Data            | Evento |
 |-----------------|---------------------------------------------|
-| 2025-03-18 16:12| Detecção do problema durante o setup inicial |
-| 2025-03-18 17:34| Investigação e diagnóstico dos erros encontrados |
-| 2025-03-19 19:02| Aplicação de ações corretivas nos containers e configuração |
+| 2025-03-19 22:12| Detecção de problemas durante o setup inicial |
+| 2025-03-20 17:34| Investigação e diagnóstico dos erros encontrados |
+| 2025-03-20 19:02| Aplicação de ações corretivas nos containers e configuração |
 | 2025-03-20 22:37| Resolução final e validação da execução das DAGs |
 
 ## Causas Raiz e Soluções

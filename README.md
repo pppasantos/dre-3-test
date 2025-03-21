@@ -2,7 +2,7 @@
 
 # Objetivos
 - [x] Conseguir subir a stack do airflow e executar a dag smooth.py.
-- [ ] Criar o postmortem explicando quais foram os problemas suas causas, soluções. E quais serão as ações para mitigar as chances disso acontecer novamente.
+- [x] Criar o postmortem explicando quais foram os problemas suas causas, soluções. E quais serão as ações para mitigar as chances disso acontecer novamente.
 - [ ] Criar arquitetura do airflow atual.
 - [ ] Sugerir uma nova arquitetura para o airflow.
 
@@ -18,6 +18,7 @@
 │   ├── notepad-da-simulação.md
 │   └── postmortem.md
 └── makefile (Make onde faremos toda a execução do projeto utilizando ele)
+└── .env (Sim não é uma boa pratica, neste ambiente é inofensivo não teremos problemas Em produção eles devem ficar em secrets.)
  ```
 
  # Topologia básica do airflow
@@ -66,11 +67,15 @@ A topologia do projeto é composta pelos seguintes serviços:
    apt install docker-compose -y
    apt install make -y
    ```
-3. Execute o Projeto:
+3. Variáveis:
+   ```bash
+   Edite o arquivo .env (Exemplo em .env.sample)
+   ```
+4. Execute o Projeto:
    ```bash
    make up
    ```
-4. Verifique se tudo está rodando:
+5. Verifique se tudo está rodando:
    ```bash
     após o comando **make** ele irá mostrar os logs, porém é possivel ver o log de cada app individualmente;
     make logs-postgres
@@ -78,10 +83,10 @@ A topologia do projeto é composta pelos seguintes serviços:
     make logs-worker
     make logs-webserver
    ```
-3. Login no Airflow:
+6. Login no Airflow:
    ```bash
    Acesse http://127.0.0.1:8080
    User: **airflow**
    Password: **airflow**
    ```
-4. Inicie a Dag smooth
+7. Inicie a Dag smooth
