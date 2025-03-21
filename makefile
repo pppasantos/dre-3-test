@@ -1,9 +1,9 @@
 .PHONY: up down logs database restart
 up:
-	mkdir -p ./dags ./logs ./plugins
-	chown -R 50000:0 ./dags ./logs ./plugins
-	docker-compose up -d 
-	docker-compose logs -f
+	sudo mkdir -p ./dags ./logs ./plugins
+	sudo chown -R 50000:0 ./dags ./logs ./plugins
+	sudo docker-compose up -d 
+	sudo docker-compose logs -f
 down:
 	docker-compose down -v
 logs:
