@@ -8,11 +8,11 @@ Listarei aqui os problemas detectados na ordem que eu os encontrei, durante a co
   ```
   sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "postgres" (172.21.0.2), port 5432 failed: FATAL:  password authentication failed for user "airflow"
   ```
-- No container do Postgres, o usuário **admin** foi substituído pelo **airflow**, que era esperado pela aplicação.
+- No container do Postgres, o usuário **admin** foi substituído por um usuario dinamico, que era esperado pela aplicação.
 
 ### 1.1. Variável `AIRFLOW_UID` não estava definida
 
-- Foi necessário defini-la globalmente.
+- Foi necessário defini-la globalmente. (.env)
 
 ## 2. Diretórios de Mapeamento Não Encontrados no Host
 
@@ -66,7 +66,3 @@ Listarei aqui os problemas detectados na ordem que eu os encontrei, durante a co
 [2025-03-20, 14:50:12 UTC] {smooth.py:37} INFO - Enjoy Sade - Smooth Operator: https://www.youtube.com/watch?v=4TYv2PhG89A
 [2025-03-20, 14:50:12 UTC] {taskinstance.py:1323} INFO - Marking task as SUCCESS.
 ```
-
-## Vídeo da Solução
-
-[Assista ao vídeo](https://drive.google.com/file/d/1rCEdJ59CETfEyiXT5HFs17PLwb867lEk/view?usp=sharing)
