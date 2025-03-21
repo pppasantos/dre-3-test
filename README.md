@@ -70,6 +70,8 @@ A topologia do projeto é composta pelos seguintes serviços:
 3. Variáveis:
    ```bash
    Edite o arquivo .env (Exemplo em .env.sample)
+   ou se preferir
+   cat .env.sample > .env
    ```
 4. Execute o Projeto:
    ```bash
@@ -86,7 +88,7 @@ A topologia do projeto é composta pelos seguintes serviços:
 6. Login no Airflow:
    ```bash
    Acesse http://127.0.0.1:8080
-   User: **airflow**
-   Password: **airflow**
+   User: Usuario presente no .env
+   Password: Password presente no .env
    ```
 7. Inicie a Dag smooth
