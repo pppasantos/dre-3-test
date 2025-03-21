@@ -138,9 +138,6 @@ services:
       - |
         mkdir -p /sources/logs /sources/dags /sources/plugins
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
-        echo "Iniciando migração do banco de dados do Airflow..."
-        airflow db upgrade
-        echo "Migração concluída!"
         exec /entrypoint airflow version
     environment:
       <<: *airflow-common-env
