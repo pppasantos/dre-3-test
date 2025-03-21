@@ -146,8 +146,8 @@ services:
       <<: *airflow-common-env
       _AIRFLOW_DB_UPGRADE: 'true'
       _AIRFLOW_WWW_USER_CREATE: 'true'
-      _AIRFLOW_WWW_USER_USERNAME: airflow
-      _AIRFLOW_WWW_USER_PASSWORD: airflow
+      _AIRFLOW_WWW_USER_USERNAME: ${AIRFLOW_WEB_USER}
+      _AIRFLOW_WWW_USER_PASSWORD: ${AIRFLOW_WEB_USER_PASSWORD}
       _PIP_ADDITIONAL_REQUIREMENTS: ''
     user: "50000:0"
     volumes:
